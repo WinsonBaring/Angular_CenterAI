@@ -5,7 +5,7 @@ import { RouterOutlet, RouterLink } from '@angular/router'; // Import RouterOutl
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink], // Make sure RouterLink is imported for the buttons
+  imports: [ RouterLink,RouterOutlet], // Make sure RouterLink is imported for the buttons
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
