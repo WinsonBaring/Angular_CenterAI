@@ -1,12 +1,14 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router'; // Import RouterOutlet and RouterLink
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink], // Make sure RouterLink is imported for the buttons
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Angular_CenterAI';
+  title = 'AI Resume Builder';
 }
