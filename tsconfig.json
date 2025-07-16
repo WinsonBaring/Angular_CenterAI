@@ -3,9 +3,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./src",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./app/*"
       ]
     },
     "outDir": "./dist/out-tsc",

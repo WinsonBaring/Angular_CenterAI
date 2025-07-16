@@ -12,6 +12,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
+
           "options": {
             "outputPath": "dist/angular-center-ai",
             "index": "src/index.html",
