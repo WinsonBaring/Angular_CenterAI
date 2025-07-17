@@ -7,6 +7,7 @@ import { NavbarComponent } from '@/components/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { ReactiveFormComponent } from '@/components/reactive-form/reactive-form.component';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
   imports: [
     CommonModule,
     RouterOutlet,
-    MatButtonModule, MatDividerModule, MatIconModule
-
-
+    MatButtonModule, MatDividerModule, MatIconModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
