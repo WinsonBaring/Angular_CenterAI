@@ -4,16 +4,19 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgbdModalComponent } from '@/components/modal-component/modal-component.component';
 import { ProductService } from '@/shared/product.service';
 import { NavbarComponent } from '@/components/navbar/navbar.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule,
     RouterOutlet,
-    NgbdModalComponent,
-    NavbarComponent,
-    MatSlideToggleModule
+    MatButtonModule, MatDividerModule, MatIconModule
+
+
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
