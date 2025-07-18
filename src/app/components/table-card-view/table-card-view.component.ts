@@ -1,7 +1,7 @@
 import { ContactService } from '@/service/contact.service';
 import { Component, DestroyRef, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CONTACT_INFO_URL } from '@/constants/variables';
 @Component({
   selector: 'app-table-card-view',
   imports: [

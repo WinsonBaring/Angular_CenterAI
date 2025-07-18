@@ -11,9 +11,11 @@
         @for(contact of contacts; track contact.id) {
         <tr>
             <td class="px-4 py-2 border-b">
-                <a [routerLink]="['contact', contact.id]"
+                <a [routerLink]="['/contact-info', contact.id]"
+
                     class="hover:underline hover:underline-offset-2 hover:decoration-black">
                     {{contact.name}}
+                    contact/{{contact.id}}
                 </a>
             </td>
             <td class="px-4 py-2 border-b">{{contact.phone}}</td>

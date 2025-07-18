@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng serve\" \"npx json-server db.json\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -38,6 +38,7 @@
     "@angular/compiler-cli": "^19.0.0",
     "@angular/localize": "^19.0.0",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^9.2.0",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

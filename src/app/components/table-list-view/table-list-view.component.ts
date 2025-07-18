@@ -1,6 +1,7 @@
 import { afterNextRender, Component, DestroyRef, inject } from '@angular/core';
 import { ContactService } from '@/service/contact.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CONTACT_INFO_URL } from '@/constants/variables';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './table-list-view.component.css'
 })
 export class TableListViewComponent {
+  CONTACT_INFO_URL = CONTACT_INFO_URL;
   contactService = inject(ContactService);
   destroyRef = inject(DestroyRef);
   contacts: any[] = [];

@@ -11,7 +11,7 @@ const requestInterceptor = (request: HttpRequest<unknown>, next: HttpHandlerFn) 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes ),
+    provideRouter(routes,withComponentInputBinding() ),
     provideHttpClient(withInterceptors([
       requestInterceptor
     ]))
