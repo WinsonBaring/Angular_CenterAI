@@ -13,7 +13,6 @@ import { CONTACT_INFO_URL } from '@/constants/variables';
   styleUrl: './table-list-view.component.css'
 })
 export class TableListViewComponent {
-  CONTACT_INFO_URL = CONTACT_INFO_URL;
   contactService = inject(ContactService);
   destroyRef = inject(DestroyRef);
   contacts: any[] = [];

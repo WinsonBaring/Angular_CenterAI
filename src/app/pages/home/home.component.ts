@@ -1,12 +1,15 @@
 import { ReactiveFormComponent } from '@/components/reactive-form/reactive-form.component';
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import {  RouterLink  } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TableListViewComponent } from '@/components/table-list-view/table-list-view.component';
 import { TableCardViewComponent } from '@/components/table-card-view/table-card-view.component';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { AddContactComponent } from '@/components/add-contact/add-contact.component';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +18,17 @@ import { TableCardViewComponent } from '@/components/table-card-view/table-card-
     MatButtonModule, MatDividerModule, MatIconModule,
     TableListViewComponent,
     TableCardViewComponent,
-],
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  modalState = 'close'
   view = signal<'list' | 'card'>('card');
-  
+  readonly dialog = inject(MatDialog);
 
+  openDialog(): void {
+    this.dialog.open(AddContactComponent);
+
+  }
 }

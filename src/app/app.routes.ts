@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from '@/pages/home/home.component';
 import { ContactInfoIdComponent } from '@/pages/contact-info-id/contact-info-id.component';
 import { CONTACT_INFO_URL } from '@/constants/variables';
+import { NotFoundComponent } from '@/pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -10,7 +11,6 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-
   {
     path: 'home',
     component: HomeComponent
@@ -23,4 +23,8 @@ export const routes: Routes = [
     path: 'contact-info/:user_id',
     component: ContactInfoIdComponent
   },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  }
 ];

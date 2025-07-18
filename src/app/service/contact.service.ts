@@ -12,4 +12,10 @@ export class ContactService {
   getContacts(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+  getContact(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+  addContact(contact: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, contact);
+  }
 }

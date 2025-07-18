@@ -1,10 +1,12 @@
 import { ContactService } from '@/service/contact.service';
 import { Component, DestroyRef,  inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contact-info-id',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './contact-info-id.component.html',
   styleUrl: './contact-info-id.component.css'
 })
@@ -13,11 +15,11 @@ export class ContactInfoIdComponent {
   
   contactService = inject(ContactService);
   destroyRef = inject(DestroyRef);
-  contacts: any[] = [];
+  contact: any;
 
   ngOnInit() {
-    const subscription = this.contactService.getContacts().subscribe((contacts) => {
-      this.contacts = contacts;
+    const subscription = this.contactService.getContact(this.user_id).subscribe((contact) => {
+      this.contact = contact;
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
