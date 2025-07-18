@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ContactService } from '@/service/contact.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ContactFormComponent } from '@/components/contact-form/contact-form.component';
 
 @Component({
   selector: 'app-add-contact',
@@ -16,7 +17,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    ContactFormComponent
   ],
   templateUrl: './add-contact.component.html',
   styleUrl: './add-contact.component.css'
@@ -56,5 +58,10 @@ export class AddContactComponent {
       });
       this.dialogRef.close();
     }
+
+  }
+  onValueChanged(value: FormGroup) {
+    this.contactForm.patchValue(value);
+    console.log(this.contactForm.value);
   }
 }

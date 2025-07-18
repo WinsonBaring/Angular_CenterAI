@@ -15,13 +15,37 @@
         <div class="flex justify-end">
             <menu class="flex w-auto">
 
-                <button 
-                [ngClass]="{'bg-gray-200': view() === 'list'}"
-                (click)="view.set('card')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
-                    <img src="assets/svg/grid.svg" alt="card view" class="w-6 h-6 mx-2">
+                <button
+                    (click)="view.set('card')"
+                    class="rounded transition-colors duration-150 p-2"
+                >
+                    <img 
+                        src="assets/svg/grid.svg" 
+                        alt="card view" 
+                        class="w-6 h-6 mx-2"
+                        [ngClass]="{
+                            'grayscale-0': view() === 'card',
+                            'grayscale': view() !== 'card',
+                            'opacity-60': view() !== 'card',
+                            'text-gray-700': true
+                        }"
+                    >
                 </button>
-                <button (click)="view.set('list')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
-                    <img src="assets/svg/menu.svg" alt="list view" class="w-6 h-6 mx-2">
+                <button
+                    (click)="view.set('list')"
+                    class="rounded transition-colors duration-150 p-2"
+                >
+                    <img 
+                        src="assets/svg/menu.svg" 
+                        alt="list view" 
+                        class="w-6 h-6 mx-2"
+                        [ngClass]="{
+                            'grayscale-0': view() === 'list',
+                            'grayscale': view() !== 'list',
+                            'opacity-60': view() !== 'list',
+                            'text-gray-700': true
+                        }"
+                    >
                 </button>
                 <!-- <li class="mx-2 card-view">grid view</li>
             <li class="mx-2 list-view">list view</li> -->
@@ -30,7 +54,7 @@
         </div>
         <!-- Table  List View -->
         @if(view() === 'list') {
-        <app-table-list-view/>
+        <app-table-list-view />
         }
         @if(view() === 'card') {
         <app-table-card-view />

@@ -9,9 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     RouterOutlet,
-    MatButtonModule, MatDividerModule, MatIconModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

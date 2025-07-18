@@ -1,10 +1,11 @@
 import { ContactService } from '@/service/contact.service';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TableButtonComponent } from '@/table-button/table-button.component';
+import { TableButtonComponent } from '@/components/add-contact/table-button/table-button.component';
 import { Contact } from '@/service/contact.service';
 import { UpdateContactComponent } from '../update-contact/update-contact.component';
 import { MatDialog } from '@angular/material/dialog';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-table-card-view',
   imports: [
@@ -19,21 +20,21 @@ export class TableCardViewComponent {
   destroyRef = inject(DestroyRef);
   readonly dialog = inject(MatDialog);
   customContacts: any[] = [];
-  contacts: any[] = [];
+  contacts = toSignal(this.contactService.getContacts(),{initialValue:[]});
   contact: any;
 
-  PhoneNumber(id:number){
-    const customPhone = this.contacts.find(contact => contact.id === id);
+  PhoneNumber(id:string){
+    const customPhone = this.contacts().find((contact: Contact) => contact.id === id);
     return customPhone?.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
   }
 
-  ngOnInit() {
-    const subscription = this.contactService.getContacts().subscribe((contacts) => {
-      this.contacts = contacts;
-    });
+  // ngOnInit() {
+  //   const subscription = this.contactService.getContacts().subscribe((contacts) => {
+  //     this.contacts = contacts;
+  //   });
 
-    this.destroyRef.onDestroy(() => subscription.unsubscribe());
-  }
+  //   this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  // }
   openDialog(contact: Contact) {
     this.dialog.open(UpdateContactComponent, {
       data: contact
