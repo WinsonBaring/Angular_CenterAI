@@ -3,10 +3,19 @@
 /* @import "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"; */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.primary-background{
+
+:root {
+    background-color: #f5f5f5;
+    /* --mat-sys-surface: #ffffff; */
+    --mat-sys-primary: #7d00fa;
+    --mat-sys-secondary: #4f0077;
+}
+
+.primary{
+    color: #ffffff;
     background-color: #7d00fa;
 }
-.secondary-background{
+.secondary{
+    color: #ffffff;
     background-color: #4f0077;
-
 }

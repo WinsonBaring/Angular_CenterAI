@@ -6,54 +6,31 @@
             <p class="text-sm text-gray-500">Your list of contact appear here. To add a new
                 contact, click the Add New Contact button</p>
         </div>
-        <button mat-flat-button>Add New Conatact</button>
+        <button mat-flat-button>Add New Contact</button>
     </section>
 
-    <!-- Table Card View -->
+
     <section class="flex flex-col gap-2 justify-between align-center">
         <div class="flex justify-end">
             <menu class="flex w-auto">
 
-                <button class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
+                <button (click)="view.set('card')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
                     <img src="assets/svg/grid.svg" alt="card view" class="w-6 h-6 mx-2">
                 </button>
-                <button class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
+                <button (click)="view.set('list')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
                     <img src="assets/svg/menu.svg" alt="list view" class="w-6 h-6 mx-2">
                 </button>
                 <!-- <li class="mx-2 card-view">grid view</li>
-                <li class="mx-2 list-view">list view</li> -->
+            <li class="mx-2 list-view">list view</li> -->
             </menu>
         </div>
-        <table class="min-w-full bg-white border border-gray-200">
-            <thead class="">
-                <tr>
-                    <th class="px-4 py-2 border-b ">Name</th>
-                    <th class="px-4 py-2 border-b">Email</th>
-                    <th class="px-4 py-2 border-b">Phone</th>
-                    <th class="px-4 py-2 border-b">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="px-4 py-2 border-b">John Doe</td>
-                    <td class="px-4 py-2 border-b">johnexample.com</td>
-                    <td class="px-4 py-2 border-b">123-456-7890</td>
-                    <td class="px-4 py-2 border-b">
-                        <button mat-icon-button aria-label="Edit"><mat-icon>edit</mat-icon></button>
-                        <button mat-icon-button aria-label="Delete"><mat-icon>delete</mat-icon></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-2 border-b">Jane Smith</td>
-                    <td class="px-4 py-2 border-b">janeexample.com</td>
-                    <td class="px-4 py-2 border-b">987-654-3210</td>
-                    <td class="px-4 py-2 border-b">
-                        <button mat-icon-button aria-label="Edit"><mat-icon>edit</mat-icon></button>
-                        <button mat-icon-button aria-label="Delete"><mat-icon>delete</mat-icon></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- Table  List View -->
+        @if(view() === 'list') {
+        <app-table-list-view />
+        }
+        @if(view() === 'card') {
+        <app-table-card-view />
+        }
 
     </section>
 </div>

@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { HttpRequest, HttpHandlerFn, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 
@@ -11,7 +11,7 @@ const requestInterceptor = (request: HttpRequest<unknown>, next: HttpHandlerFn) 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes ),
     provideHttpClient(withInterceptors([
       requestInterceptor
     ]))

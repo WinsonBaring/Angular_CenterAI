@@ -1,0 +1,34 @@
+<table class="min-w-full bg-white border border-gray-200">
+    <thead class="secondary text-left">
+        <tr>
+            <th class="px-4 py-2 border-b secondary text-left font-normal">Name</th>
+            <th class="px-4 py-2 border-b secondary text-left font-normal">Contact Number</th>
+            <th class="px-4 py-2 border-b secondary text-left font-normal">Email Address</th>
+            <th class="px-4 py-2 border-b secondary text-left font-normal">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(contact of contacts; track contact.id) {
+        <tr>
+            <td class="px-4 py-2 border-b">
+                <a [routerLink]="['contact', contact.id]"
+                    class="hover:underline hover:underline-offset-2 hover:decoration-black">
+                    {{contact.name}}
+                </a>
+            </td>
+            <td class="px-4 py-2 border-b">{{contact.phone}}</td>
+            <td class="px-4 py-2 border-b">{{contact.email}}</td>
+            <td class="px-4 py-2 border-b">
+                <button mat-icon-button aria-label="Edit"
+                    class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
+                    <img src="assets/svg/pencil.svg" alt="edit" class="w-6 h-6">
+                </button>
+                <button mat-icon-button aria-label="Delete"
+                    class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
+                    <img src="assets/svg/trash.svg" alt="delete" class="w-6 h-6">
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
