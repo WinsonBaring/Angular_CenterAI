@@ -12,23 +12,16 @@
         <tr>
             <td class="px-4 py-2 border-b">
                 <a [routerLink]="['/contact-info', contact.id]"
-
                     class="hover:underline hover:underline-offset-2 hover:decoration-black">
                     {{contact.name}}
-                    contact/{{contact.id}}
                 </a>
             </td>
-            <td class="px-4 py-2 border-b">{{contact.phone}}</td>
+            <td class="px-4 py-2 border-b">{{ PhoneNumber(contact.id) }}</td>
             <td class="px-4 py-2 border-b">{{contact.email}}</td>
             <td class="px-4 py-2 border-b">
-                <button mat-icon-button aria-label="Edit"
-                    class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
-                    <img src="assets/svg/pencil.svg" alt="edit" class="w-6 h-6">
-                </button>
-                <button mat-icon-button aria-label="Delete"
-                    class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
-                    <img src="assets/svg/trash.svg" alt="delete" class="w-6 h-6">
-                </button>
+                <app-table-button
+                    [contact]="contact"
+                />
             </td>
         </tr>
         }

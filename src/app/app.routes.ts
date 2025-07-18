@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from '@/pages/home/home.component';
 import { ContactInfoIdComponent } from '@/pages/contact-info-id/contact-info-id.component';
-import { CONTACT_INFO_URL } from '@/constants/variables';
 import { NotFoundComponent } from '@/pages/not-found/not-found.component';
 
 export const routes: Routes = [

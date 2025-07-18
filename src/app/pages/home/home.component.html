@@ -15,7 +15,9 @@
         <div class="flex justify-end">
             <menu class="flex w-auto">
 
-                <button (click)="view.set('card')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
+                <button 
+                [ngClass]="{'bg-gray-200': view() === 'list'}"
+                (click)="view.set('card')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
                     <img src="assets/svg/grid.svg" alt="card view" class="w-6 h-6 mx-2">
                 </button>
                 <button (click)="view.set('list')" class="hover:bg-gray-200 rounded transition-colors duration-150 p-2">
@@ -28,7 +30,7 @@
         </div>
         <!-- Table  List View -->
         @if(view() === 'list') {
-        <app-table-list-view />
+        <app-table-list-view/>
         }
         @if(view() === 'card') {
         <app-table-card-view />

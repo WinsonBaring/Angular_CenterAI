@@ -3,17 +3,12 @@
     <section class="flex gap-2 bg-white border border-gray-200 rounded-lg p-4">
         <div>
             <a [routerLink]="['/contact-info', contact.id]">{{ contact.name }}</a>
-            <div>{{ contact.phone }}</div>
+            <div>{{ PhoneNumber(contact.id) }}</div>
             <div>{{ contact.email }}</div>
         </div>
         <div class="w-full">
             <div class="flex justify-end gap-2">
-                <button>
-                    <img src="assets/svg/pencil.svg" alt="edit" class="w-6 h-6">
-                </button>
-                <button>
-                    <img src="assets/svg/trash.svg" alt="delete" class="w-6 h-6">
-                </button>
+                <app-table-button [contact]="contact" />
             </div>
         </div>
     </section>
