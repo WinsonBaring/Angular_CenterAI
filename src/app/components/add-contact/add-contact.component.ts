@@ -50,9 +50,10 @@ export class AddContactComponent {
   onSubmit(): void {
     if (this.contactForm.valid) {
       this.contactService.addContact(this.contactForm.value).subscribe((res) => {
-        this._snackBar.open('✔ Successfully added a new contact.', 'Close', {
+        this._snackBar.open('✔ Successfully added a new contact.', '', {
           duration: 4000,
-          panelClass: ['custom-snackbar']
+          horizontalPosition: 'right',
+          verticalPosition: 'bottom',
         });
         this.dialogRef.close(res);
       });

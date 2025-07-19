@@ -9,6 +9,7 @@ import { TableCardViewComponent } from '@/components/table-card-view/table-card-
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { AddContactComponent } from '@/components/add-contact/add-contact.component';
+import { ContactService } from '@/service/contact.service';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +25,15 @@ import { AddContactComponent } from '@/components/add-contact/add-contact.compon
 export class HomeComponent {
   modalState = 'close'
   view = signal<'list' | 'card'>('card');
+  private contactService = inject(ContactService);
   readonly dialog = inject(MatDialog);
 
   openDialog(): void {
-    this.dialog.open(AddContactComponent);
-
+    this.dialog.open(AddContactComponent).afterClosed().subscribe((res) => {
+      if (res) {
+        this.contactService.getContacts().subscribe((res) => {
+        });
+      }
+    });
   }
 }
