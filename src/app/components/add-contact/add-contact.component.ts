@@ -54,22 +54,10 @@ export class AddContactComponent {
           duration: 4000,
           panelClass: ['custom-snackbar']
         });
+        this.dialogRef.close(res);
       });
-      this.dialogRef.close();
     }
 
   }
 
-  onSnackbar() {
-    // let config = new MatSnackBarConfig();
-    // // config.duration = 500000;
-    // // config.panelClass = ['custom-snackbar']
-    // // this._snackBar.open("This is a message!", "ACTION", config);
-    this._snackBar.open('✔ Successfully added a new contact.', '', {
-      duration: 1000000,
-      panelClass: ['custom-snackbar'],
-      horizontalPosition: 'right',
-      verticalPosition: 'bottom',
-    });
-  }
 }
