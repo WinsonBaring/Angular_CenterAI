@@ -6,8 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ContactService } from '@/service/contact.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ContactFormComponent } from '@/components/contact-form/contact-form.component';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-contact',
@@ -17,8 +16,7 @@ import { ContactFormComponent } from '@/components/contact-form/contact-form.com
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    ContactFormComponent
+    MatButtonModule
   ],
   templateUrl: './add-contact.component.html',
   styleUrl: './add-contact.component.css'
@@ -52,16 +50,26 @@ export class AddContactComponent {
   onSubmit(): void {
     if (this.contactForm.valid) {
       this.contactService.addContact(this.contactForm.value).subscribe((res) => {
-        this._snackBar.open('Contact added successfully', 'Close', {
-          duration: 3000,
+        this._snackBar.open('✔ Successfully added a new contact.', 'Close', {
+          duration: 4000,
+          panelClass: ['custom-snackbar']
         });
       });
       this.dialogRef.close();
     }
 
   }
-  onValueChanged(value: FormGroup) {
-    this.contactForm.patchValue(value);
-    console.log(this.contactForm.value);
+
+  onSnackbar() {
+    // let config = new MatSnackBarConfig();
+    // // config.duration = 500000;
+    // // config.panelClass = ['custom-snackbar']
+    // // this._snackBar.open("This is a message!", "ACTION", config);
+    this._snackBar.open('✔ Successfully added a new contact.', '', {
+      duration: 1000000,
+      panelClass: ['custom-snackbar'],
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 }

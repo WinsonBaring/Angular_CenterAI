@@ -1,7 +1,7 @@
 import { ContactService } from '@/service/contact.service';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TableButtonComponent } from '@/components/add-contact/table-button/table-button.component';
+import { TableButtonComponent } from '@/components/table-button/table-button.component';
 import { Contact } from '@/service/contact.service';
 import { UpdateContactComponent } from '../update-contact/update-contact.component';
 import { MatDialog } from '@angular/material/dialog';

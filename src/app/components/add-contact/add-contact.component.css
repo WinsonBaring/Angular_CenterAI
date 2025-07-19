@@ -1,3 +1,8 @@
 .add-contact-custom-border{
     border: 2px solid #d1d5dc;
 }
+.custom-snackbar {
+    background-color: #4caf50; /* Green background */
+    color: black; /* White text */
+    font-size: 16px; /* Adjust font size */
+  }

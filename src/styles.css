@@ -6,13 +6,16 @@
     /* --mat-sys-surface: #ffffff; */
     --mat-sys-primary: #7d00fa;
     --mat-sys-secondary: #4f0077;
+    --mdc-snackbar-container-color: #43f7cc;
+    --mdc-snackbar-supporting-text-color: #000000;
 }
 
-.primary{
+.primary {
     color: #ffffff;
     background-color: #7d00fa;
 }
-.secondary{
+
+.secondary {
     color: #ffffff;
     background-color: #4f0077;
 }

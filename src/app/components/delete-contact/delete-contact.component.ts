@@ -35,8 +35,10 @@ export class DeleteContactComponent {
 
   onSubmit(): void {
     this.contactService.deleteContact(this.contact().id).subscribe((res) => {
-      this._snackBar.open('Contact Deleted successfully', 'Close', {
-        duration: 3000,
+      this._snackBar.open('✔ Contact deleted successfully.', '', {
+        duration: 4000,
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom',
       });
     });
     this.dialogRef.close();

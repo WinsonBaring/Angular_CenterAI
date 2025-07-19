@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AddContactComponent } from '../add-contact/add-contact.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateContactComponent } from '../update-contact/update-contact.component';
-import { TableButtonComponent } from '@/components/add-contact/table-button/table-button.component';
+import { TableButtonComponent } from '@/components/table-button/table-button.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 

@@ -53,8 +53,10 @@ export class UpdateContactComponent {
     if (this.contactForm.valid) {
       // console.log('is this it?',this.contact().id);
       this.contactService.updateContact(this.contact().id, this.contactForm.value).subscribe((res) => {
-        this._snackBar.open('Contact updated successfully', 'Close', {
-          duration: 3000,
+        this._snackBar.open('✔ Changes saved.', '', {
+          duration: 4000,
+          horizontalPosition: 'right',
+          verticalPosition: 'bottom',
         });
         this.dialogRef.close();
       });

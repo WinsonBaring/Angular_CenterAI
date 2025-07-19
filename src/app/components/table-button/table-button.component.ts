@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UpdateContactComponent } from '../../update-contact/update-contact.component';
+import { UpdateContactComponent } from '../update-contact/update-contact.component';
 import { DeleteContactComponent } from '@/components/delete-contact/delete-contact.component';
 import { Contact } from '@/service/contact.service';
 
