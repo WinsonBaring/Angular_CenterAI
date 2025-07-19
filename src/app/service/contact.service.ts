@@ -1,7 +1,7 @@
 import { SupabaseService } from '@/shared/supabase.service';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, from, throwError, BehaviorSubject, of } from 'rxjs'; // CHANGED: Subject to BehaviorSubject
+import { Observable, from, throwError, BehaviorSubject, of, Subject } from 'rxjs'; // CHANGED: Subject to BehaviorSubject
 import { catchError, map, shareReplay, switchMap, tap, finalize } from 'rxjs/operators';
 
 export interface Contact {

@@ -32,17 +32,7 @@ export class HomeComponent {
 
 
 
-  refresh(){
-    const result = this.contactService.revalidateContacts();
-    console.log('result', result);
-  }
   openDialog(): void {
-    this.dialog.open(AddContactComponent).afterClosed().subscribe({
-      next: (res) => {
-        if (res) {
-
-        }
-      }
-    });
+    this.dialog.open(AddContactComponent)
   }
 }
