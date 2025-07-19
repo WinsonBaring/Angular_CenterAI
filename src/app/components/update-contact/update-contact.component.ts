@@ -52,7 +52,7 @@ export class UpdateContactComponent {
   onSubmit(): void {
     if (this.contactForm.valid) {
       // console.log('is this it?',this.contact().id);
-      this.contactService.updateContact(this.contact().id, this.contactForm.value).subscribe((res) => {
+      this.contactService.updateContact(this.contactForm.value).subscribe((res) => {
         this._snackBar.open('✔ Changes saved.', '', {
           duration: 4000,
           horizontalPosition: 'right',

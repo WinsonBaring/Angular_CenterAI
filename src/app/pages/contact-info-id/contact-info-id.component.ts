@@ -15,10 +15,10 @@ export class ContactInfoIdComponent {
   user_id = inject(ActivatedRoute).snapshot.params['user_id'];
   
   contactService = inject(ContactService);
-  contact = toSignal(this.contactService.getContact(this.user_id),{initialValue:{} as Contact});
+  contact = toSignal(this.contactService.getContacts(),{initialValue:[] as Contact[]});
   destroyRef = inject(DestroyRef);
   phoneNumber = computed(()=>{
-    return this.contact().phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    return this.contact()[0].phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
   })
   // ngOnInit() {
   //   const subscription = this.contactService.getContact(this.user_id).subscribe((contact) => {
