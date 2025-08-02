@@ -1,20 +1,43 @@
-.card-view{
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+/* Home component styles to ensure content is visible */
+:host {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
-.list-view{
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+/* Ensure the hero section starts below the navigation bar */
+section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  position: relative;
+  z-index: 1;
+  /* Temporary debug style to ensure visibility */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Custom animations for the landing page */
+/* Hero section specific styles */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure all sections are properly spaced and visible */
+section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: block;
+}
+
+/* Background pattern animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -123,5 +146,47 @@
 
 .btn-hover-effect:hover::before {
   left: 100%;
+}
+
+/* Ensure proper spacing for the app layout */
+:host {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Fix for any potential overflow issues */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure sections are properly visible */
+section {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Debug styles to ensure visibility */
+.relative {
+  position: relative !important;
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #3b82f6, #8b5cf6, #6366f1) !important;
+}
+
+.text-white {
+  color: white !important;
+}
+
+/* Ensure the first section (hero) is visible */
+section:first-child {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+  z-index: 1;
 }
 

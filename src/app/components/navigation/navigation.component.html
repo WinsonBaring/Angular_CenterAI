@@ -1,0 +1,266 @@
+<!-- Main Navigation Toolbar -->
+<mat-toolbar 
+  class="navigation-toolbar"
+  [ngClass]="{
+    'scrolled': isScrolled(),
+    'authenticated': isAuthenticated
+  }"
+>
+  <div class="toolbar-container">
+    <!-- Logo and Brand -->
+    <div class="brand-section">
+      <a routerLink="/" class="brand-link">
+        <mat-icon class="brand-icon">contacts</mat-icon>
+        <span class="brand-text">Contact Manager</span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" *ngIf="!isAuthenticated">
+      <a 
+        routerLink="/home" 
+        routerLinkActive="active"
+        class="nav-link"
+        (click)="scrollToTop()"
+      >
+        Home
+      </a>
+      <a 
+        routerLink="/home" 
+        routerLinkActive="active"
+        class="nav-link"
+        (click)="scrollToFeatures()"
+      >
+        Features
+      </a>
+      
+    </nav>
+
+    <!-- Desktop Action Buttons -->
+    <div class="desktop-actions" *ngIf="!isAuthenticated">
+      <button 
+        mat-button 
+        routerLink="/login"
+        class="login-btn"
+      >
+        <mat-icon>login</mat-icon>
+        Sign In
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary"
+        routerLink="/login"
+        class="cta-btn"
+      >
+        Get Started
+      </button>
+    </div>
+
+    <!-- Authenticated User Menu (Desktop) -->
+    <div class="authenticated-menu" *ngIf="isAuthenticated">
+      <button 
+        mat-raised-button 
+        color="primary"
+        routerLink="/dashboard"
+        class="dashboard-btn"
+      >
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+      </button>
+      
+      <button 
+        mat-icon-button 
+        [matMenuTriggerFor]="userMenu"
+        class="user-menu-trigger"
+        
+      >
+        <img 
+          [src]="currentUser?.avatar || 'assets/users/user-1.jpg'" 
+          [alt]="currentUser?.name"
+          class="rounded-full w-[10rem] h-[10rem]"
+        >
+      </button>
+
+      <mat-menu #userMenu="matMenu" class="user-menu">
+        <div class="user-menu-header">
+          <p class="user-name">{{ currentUser?.name }}</p>
+          <p class="user-email">{{ currentUser?.email }}</p>
+        </div>
+        
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        
+        <mat-divider></mat-divider>
+        
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      mat-icon-button 
+      class="mobile-menu-btn"
+      (click)="toggleMenu()"
+      [attr.aria-label]="'Toggle navigation menu'"
+    >
+      <mat-icon>{{ isMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Mobile Navigation Sidenav -->
+<div 
+  class="mobile-sidenav-container"
+  [ngClass]="{ 'active': isMenuOpen() }"
+>
+  <div 
+    class="mobile-sidenav"
+    [ngClass]="{ 'opened': isMenuOpen() }"
+  >
+    <div class="sidenav-content">
+      <!-- Mobile Brand -->
+      <div class="mobile-brand">
+        <mat-icon>contacts</mat-icon>
+        <span>Contact Manager</span>
+      </div>
+
+      <!-- Mobile Navigation Links -->
+      <mat-nav-list *ngIf="!isAuthenticated">
+        <a 
+          mat-list-item 
+          routerLink="/home"
+          (click)="closeMenu(); scrollToTop()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>home</mat-icon>
+          <span matListItemTitle>Home</span>
+        </a>
+        
+        <a 
+          mat-list-item 
+          routerLink="/home"
+          (click)="closeMenu(); scrollToFeatures()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>star</mat-icon>
+          <span matListItemTitle>Features</span>
+        </a>
+        
+        <a 
+          mat-list-item 
+          routerLink="/home"
+          (click)="closeMenu()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>info</mat-icon>
+          <span matListItemTitle>About</span>
+        </a>
+        
+        <a 
+          mat-list-item 
+          routerLink="/home"
+          (click)="closeMenu()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>contact_support</mat-icon>
+          <span matListItemTitle>Contact</span>
+        </a>
+      </mat-nav-list>
+
+      <!-- Mobile Authenticated Menu -->
+      <mat-nav-list *ngIf="isAuthenticated">
+        <a 
+          mat-list-item 
+          routerLink="/dashboard"
+          (click)="closeMenu()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+        
+        <a 
+          mat-list-item 
+          routerLink="/dashboard"
+          (click)="closeMenu()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>person</mat-icon>
+          <span matListItemTitle>Profile</span>
+        </a>
+        
+        <a 
+          mat-list-item 
+          routerLink="/dashboard"
+          (click)="closeMenu()"
+          class="mobile-nav-link"
+        >
+          <mat-icon matListItemIcon>settings</mat-icon>
+          <span matListItemTitle>Settings</span>
+        </a>
+      </mat-nav-list>
+
+      <!-- Mobile Action Buttons -->
+      <div class="mobile-actions">
+        <div *ngIf="!isAuthenticated" class="mobile-auth-buttons">
+          <button 
+            mat-stroked-button 
+            routerLink="/login"
+            (click)="closeMenu()"
+            class="mobile-login-btn"
+          >
+            <mat-icon>login</mat-icon>
+            Sign In
+          </button>
+          <button 
+            mat-raised-button 
+            color="primary"
+            routerLink="/login"
+            (click)="closeMenu()"
+            class="mobile-cta-btn"
+          >
+            Get Started
+          </button>
+        </div>
+        
+        <div *ngIf="isAuthenticated" class="mobile-user-info">
+          <div class="mobile-user-details">
+            <img 
+              [src]="currentUser?.avatar || 'assets/users/user-1.jpg'" 
+              [alt]="currentUser?.name"
+              class="mobile-user-avatar"
+            >
+            <div class="mobile-user-text">
+              <p class="mobile-user-name">{{ currentUser?.name }}</p>
+              <p class="mobile-user-email">{{ currentUser?.email }}</p>
+            </div>
+          </div>
+          <button 
+            mat-stroked-button 
+            color="warn"
+            (click)="logout()"
+            class="mobile-logout-btn"
+          >
+            <mat-icon>logout</mat-icon>
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

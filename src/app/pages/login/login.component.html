@@ -1,103 +1,106 @@
-<div class="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 flex items-center justify-center p-4">
-  <div class="w-full max-w-md">
-    <!-- Logo/Brand Section -->
-    <div class="text-center mb-8">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4 shadow-lg">
-        <mat-icon class="text-3xl text-blue-600">contacts</mat-icon>
-      </div>
-      <h1 class="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-      <p class="text-blue-100">Sign in to your account</p>
-    </div>
-
-    <!-- Login Card -->
-    <mat-card class="w-full shadow-2xl">
-      <mat-card-content class="p-8">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
-          <!-- Email Field -->
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Email</mat-label>
-            <input 
-              matInput 
-              type="email" 
-              formControlName="email" 
-              placeholder="Enter your email"
-              autocomplete="email"
-            >
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-              {{ getErrorMessage('email') }}
-            </mat-error>
-          </mat-form-field>
-
-          <!-- Password Field -->
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Password</mat-label>
-            <input 
-              matInput 
-              [type]="hidePassword ? 'password' : 'text'" 
-              formControlName="password" 
-              placeholder="Enter your password"
-              autocomplete="current-password"
-            >
-            <button 
-              mat-icon-button 
-              matSuffix 
-              type="button"
-              (click)="togglePasswordVisibility()"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hidePassword"
-            >
-              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
-            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-              {{ getErrorMessage('password') }}
-            </mat-error>
-          </mat-form-field>
-
-          <!-- Demo Credentials Info -->
-          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-700">
-            <p class="font-semibold mb-1">Demo Credentials:</p>
-            <p class="mb-1">Email: <span class="font-mono">demo&#64;example.com</span></p>
-            <p>Password: <span class="font-mono">password</span></p>
+<div class="flex flex-col gap-4 p-6 w-full max-w-md mx-auto">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+    
+    <!-- Email Field -->
+    <div class="flex flex-col gap-1">
+      <label for="email" class="text-gray-600 text-[15px] font-semibold">Email Address</label>
+      <input type="email" 
+        formControlName="email"
+        class="focus-visible:outline-none p-3 border-2 border-gray-300 rounded-md focus:border-violet-500"
+        [class.border-red-300]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required>
+      @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        @if(loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.value?.length === 0) {
+          <div class="text-red-500 text-[12px] pl-4">
+            Please enter an email address
           </div>
-
-          <!-- Submit Button -->
-          <button 
-            mat-raised-button 
-            color="primary" 
-            type="submit" 
-            class="w-full py-3 text-lg"
-            [disabled]="loginForm.invalid || isLoading"
-          >
-            <mat-spinner 
-              diameter="20" 
-              *ngIf="isLoading" 
-              class="inline mr-2"
-            ></mat-spinner>
-            <span *ngIf="!isLoading">Sign In</span>
-            <span *ngIf="isLoading">Signing In...</span>
-          </button>
-        </form>
-
-        <!-- Additional Links -->
-        <div class="mt-6 text-center">
-          <p class="text-gray-600 text-sm">
-            Don't have an account? 
-            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Sign up</a>
-          </p>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <!-- Back to Home Link -->
-    <div class="text-center mt-6">
-      <a 
-        routerLink="/" 
-        class="text-blue-100 hover:text-white transition-colors duration-200 flex items-center justify-center"
-      >
-        <mat-icon class="mr-1">arrow_back</mat-icon>
-        Back to Home
-      </a>
+        }
+        @if(loginForm.get('email')?.errors?.['email']) {
+          <div class="text-red-500 text-[12px] pl-4">
+            Please enter a valid email address
+          </div>
+        }
+      }
     </div>
-  </div>
-</div> 
+
+    <!-- Password Field -->
+    <div class="flex flex-col gap-1">
+      <label for="password" class="text-gray-600 text-[15px] font-semibold">Password</label>
+      <input [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password" 
+        class="focus-visible:outline-none p-3 border-2 border-gray-300 rounded-md focus:border-violet-500"
+        [class.border-red-300]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required>
+      @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <div class="text-red-500 text-[12px] pl-4">
+          Please enter a password
+        </div>
+      }
+    </div>
+
+    <!-- Remember Me & Forgot Password -->
+    <div class="flex justify-between items-center">
+      <mat-checkbox class="text-gray-600">Remember me</mat-checkbox>
+      <a href="#" class="text-violet-500 hover:text-violet-600">Forgot password?</a>
+    </div>
+
+    <!-- Demo Credentials -->
+    <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
+      <div class="flex items-center gap-2 mb-2">
+        <mat-icon class="text-gray-500">info</mat-icon>
+        <span class="font-semibold">Demo Credentials</span>
+      </div>
+      <div class="text-sm text-gray-600">
+        <p>Email: <code class="bg-gray-100 px-1">demo&#64;example.com</code></p>
+        <p>Password: <code class="bg-gray-100 px-1">password</code></p>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" 
+      [disabled]="loginForm.invalid || isLoading"
+      class="bg-violet-500 text-white rounded-md p-3 disabled:bg-gray-300">
+      @if(isLoading) {
+        <span>Signing In...</span>
+      } @else {
+        <span>Sign In</span>
+      }
+    </button>
+
+    <!-- Divider -->
+    <div class="flex items-center gap-4 my-4">
+      <div class="flex-1 h-[1px] bg-gray-200"></div>
+      <span class="text-gray-500">or</span>
+      <div class="flex-1 h-[1px] bg-gray-200"></div>
+    </div>
+
+    <!-- Social Login -->
+    <div class="flex flex-col gap-3">
+      <button type="button" class="flex items-center justify-center gap-2 p-3 border-2 border-gray-300 rounded-md hover:bg-gray-50">
+        <mat-icon>google</mat-icon>
+        <span>Continue with Google</span>
+      </button>
+      <button type="button" class="flex items-center justify-center gap-2 p-3 border-2 border-gray-300 rounded-md hover:bg-gray-50">
+        <mat-icon>code</mat-icon>
+        <span>Continue with GitHub</span>
+      </button>
+    </div>
+
+    <!-- Sign Up Link -->
+    <p class="text-center text-gray-600 mt-4">
+      Don't have an account? 
+      <a routerLink="/register" class="text-violet-500 hover:text-violet-600">Create one now</a>
+    </p>
+
+  </form>
+
+  <!-- Back Link -->
+  <a routerLink="/" class="flex items-center gap-2 text-gray-600 hover:text-gray-800 mt-4">
+    <mat-icon>arrow_back</mat-icon>
+    <span>Back to Home</span>
+  </a>
+</div>

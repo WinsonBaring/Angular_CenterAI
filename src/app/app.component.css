@@ -1,0 +1,19 @@
+/* App component styles */
+.app-content {
+  padding-top: 64px; /* Height of the navigation toolbar */
+  min-height: calc(100vh - 64px);
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .app-content {
+    padding-top: 56px; /* Slightly smaller toolbar on mobile */
+    min-height: calc(100vh - 56px);
+  }
+}
+
+/* Ensure the app takes full height */
+:host {
+  display: block;
+  min-height: 100vh;
+}

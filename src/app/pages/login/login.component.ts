@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '@/shared/auth.service';
 
@@ -22,7 +24,9 @@ import { AuthService } from '@/shared/auth.service';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatDividerModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
