@@ -1,0 +1,206 @@
+<!-- Navigation Header -->
+<mat-toolbar class="bg-white shadow-md sticky top-0 z-50">
+  <div class="flex items-center justify-between w-full px-4">
+    <!-- Logo and Brand -->
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-2">
+        <mat-icon class="text-blue-600 text-2xl">contacts</mat-icon>
+        <span class="text-xl font-bold text-gray-900">Contact Manager</span>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a 
+        routerLink="/dashboard" 
+        routerLinkActive="text-blue-600"
+        class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+      >
+        Dashboard
+      </a>
+      <a 
+        routerLink="/dashboard" 
+        routerLinkActive="text-blue-600"
+        class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+      >
+        Contacts
+      </a>
+      <a 
+        routerLink="/dashboard" 
+        routerLinkActive="text-blue-600"
+        class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+      >
+        Analytics
+      </a>
+    </div>
+
+    <!-- User Menu -->
+    <div class="flex items-center space-x-4">
+      <!-- Add Contact Button -->
+      <button 
+        mat-raised-button 
+        color="primary" 
+        class="hidden sm:block"
+        (click)="openDialog()"
+      >
+        <mat-icon class="mr-2">add</mat-icon>
+        Add Contact
+      </button>
+
+      <!-- User Profile Menu -->
+      <button 
+        mat-icon-button 
+        [matMenuTriggerFor]="userMenu"
+        class="relative"
+      >
+        <img 
+          [src]="currentUser?.avatar || 'assets/users/user-1.jpg'" 
+          [alt]="currentUser?.name"
+          class="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
+        >
+      </button>
+
+      <mat-menu #userMenu="matMenu" class="min-w-48">
+        <div class="px-4 py-3 border-b border-gray-100">
+          <p class="text-sm font-medium text-gray-900">{{ currentUser?.name }}</p>
+          <p class="text-sm text-gray-500">{{ currentUser?.email }}</p>
+        </div>
+        
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        
+        <mat-divider></mat-divider>
+        
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+
+<!-- Main Content -->
+<div class="min-h-screen bg-gray-50">
+  <!-- Page Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Contact Management</h1>
+          <p class="mt-1 text-sm text-gray-600">
+            Manage and organize your contact information efficiently
+          </p>
+        </div>
+        
+        <!-- Mobile Add Button -->
+        <div class="mt-4 sm:mt-0 sm:hidden">
+          <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="openDialog()"
+          >
+            <mat-icon>add</mat-icon>
+            Add Contact
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Management Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- View Toggle -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center space-x-4">
+        <span class="text-sm font-medium text-gray-700">View:</span>
+        <div class="bg-white rounded-lg p-1 flex shadow-sm border">
+          <button
+            (click)="view.set('card')"
+            class="px-4 py-2 rounded-md transition-all duration-200 flex items-center text-sm"
+            [ngClass]="{
+              'bg-blue-100 text-blue-700 shadow-sm': view() === 'card',
+              'text-gray-600 hover:text-gray-900': view() !== 'card'
+            }"
+          >
+            <img 
+              src="assets/svg/grid.svg" 
+              alt="card view" 
+              class="w-4 h-4 mr-2"
+              [ngClass]="{
+                'grayscale-0': view() === 'card',
+                'grayscale': view() !== 'card'
+              }"
+            >
+            Card View
+          </button>
+          <button
+            (click)="view.set('list')"
+            class="px-4 py-2 rounded-md transition-all duration-200 flex items-center text-sm"
+            [ngClass]="{
+              'bg-blue-100 text-blue-700 shadow-sm': view() === 'list',
+              'text-gray-600 hover:text-gray-900': view() !== 'list'
+            }"
+          >
+            <img 
+              src="assets/svg/menu.svg" 
+              alt="list view" 
+              class="w-4 h-4 mr-2"
+              [ngClass]="{
+                'grayscale-0': view() === 'list',
+                'grayscale': view() !== 'list'
+              }"
+            >
+            List View
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="hidden sm:flex items-center space-x-6 text-sm text-gray-600">
+        <div class="flex items-center space-x-2">
+          <mat-icon class="text-green-500">people</mat-icon>
+          <span>Total Contacts: <span class="font-semibold">24</span></span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <mat-icon class="text-blue-500">star</mat-icon>
+          <span>Favorites: <span class="font-semibold">8</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Display -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+      <!-- Contact Views -->
+      @if(view() === 'list') {
+        <app-table-list-view />
+      }
+      @if(view() === 'card') {
+        <app-table-card-view />
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<button 
+  mat-fab 
+  color="primary" 
+  class="fixed bottom-6 right-6 z-40"
+  (click)="scrollToTop()"
+  aria-label="Scroll to top"
+>
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button> 

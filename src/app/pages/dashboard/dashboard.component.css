@@ -1,0 +1,88 @@
+/* Dashboard component styles */
+.mat-mdc-toolbar {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Custom scrollbar for the dashboard */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Toolbar responsive adjustments */
+@media (max-width: 768px) {
+  .mat-mdc-toolbar {
+    padding: 0 1rem;
+  }
+}
+
+/* User avatar styling */
+.user-avatar {
+  transition: transform 0.2s ease;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Menu styling */
+.mat-mdc-menu-panel {
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* FAB button styling */
+.mat-mdc-fab {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.mat-mdc-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* View toggle button styling */
+.view-toggle-button {
+  transition: all 0.2s ease;
+}
+
+.view-toggle-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Stats section styling */
+.stats-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .stats-section {
+    display: none;
+  }
+  
+  .view-toggle-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+} 

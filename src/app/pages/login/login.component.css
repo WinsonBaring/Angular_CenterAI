@@ -1,0 +1,68 @@
+/* Custom styles for login component */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mat-mdc-raised-button {
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+/* Custom animation for the card */
+.mat-mdc-card {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects */
+.mat-mdc-raised-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Form field focus effects */
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-flex {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Demo credentials box styling */
+.bg-blue-50 {
+  background-color: #eff6ff;
+}
+
+.border-blue-200 {
+  border-color: #bfdbfe;
+}
+
+.text-blue-700 {
+  color: #1d4ed8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .mat-mdc-card-content {
+    padding: 1.5rem !important;
+  }
+  
+  h1 {
+    font-size: 1.875rem;
+  }
+} 
