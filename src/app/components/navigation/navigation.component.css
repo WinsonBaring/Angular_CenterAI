@@ -303,10 +303,6 @@
   font-size: 1.05rem;
 }
 
-.mobile-cta-btn {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-}
 
 .mobile-user-info {
   display: flex;
