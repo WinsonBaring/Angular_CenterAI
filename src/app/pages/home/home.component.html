@@ -1,65 +1,228 @@
-<div>
-    <!-- Header -->
-    <section class="flex flex-row gap-2 p-4 justify-between">
-        <div class="flex flex-col justify-between">
-            <h1 class="text-xl font-bold  mb-2" >Contact Information</h1>
-            <p class="text-sm ">Your list of contact appear here. To add a new
-                contact, click the Add New Contact button</p>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-0 left-0 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+    <div class="absolute top-0 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+  </div>
+  
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        Manage Your Contacts
+        <span class="block text-blue-200">With Ease</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+        A modern, intuitive contact management system built with Angular. 
+        Organize, view, and manage your contacts in style.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button 
+          mat-raised-button 
+          color="accent" 
+          class="text-lg px-8 py-3 bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+          (click)="openDialog()"
+        >
+          <mat-icon class="mr-2">add</mat-icon>
+          Add New Contact
+        </button>
+        <button 
+          mat-stroked-button 
+          class="text-lg px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105"
+          (click)="scrollToFeatures()"
+        >
+          <mat-icon class="mr-2">info</mat-icon>
+          Learn More
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Powerful Features
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Everything you need to manage your contacts efficiently and beautifully
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Feature 1 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+          <mat-icon class="text-3xl text-blue-600">grid_view</mat-icon>
         </div>
-        <button mat-flat-button (click)="openDialog()">Add New Contact</button>
-
-
-    </section>
-    <!-- {{testSubject2$ | async}} -->
-
-    <section class="flex flex-col gap-2 justify-between align-center">
-        <div class="flex justify-end">
-            <menu class="flex w-auto">
-
-                <button
-                    (click)="view.set('card')"
-                    class="rounded transition-colors duration-150 p-2"
-                >
-                    <img 
-                        src="assets/svg/grid.svg" 
-                        alt="card view" 
-                        class="w-6 h-6 mx-2"
-                        [ngClass]="{
-                            'grayscale-0': view() === 'card',
-                            'grayscale': view() !== 'card',
-                            'opacity-60': view() !== 'card',
-                            'text-gray-700': true
-                        }"
-                    >
-                </button>
-                <button
-                    (click)="view.set('list')"
-                    class="rounded transition-colors duration-150 p-2"
-                >
-                    <img 
-                        src="assets/svg/menu.svg" 
-                        alt="list view" 
-                        class="w-6 h-6 mx-2"
-                        [ngClass]="{
-                            'grayscale-0': view() === 'list',
-                            'grayscale': view() !== 'list',
-                            'opacity-60': view() !== 'list',
-                            'text-gray-700': true
-                        }"
-                    >
-                </button>
-                <!-- <li class="mx-2 card-view">grid view</li>
-            <li class="mx-2 list-view">list view</li> -->
-
-            </menu>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">Card View</h3>
+        <p class="text-gray-600">
+          View your contacts in an elegant card layout with profile pictures and quick access to contact details.
+        </p>
+      </div>
+      
+      <!-- Feature 2 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+          <mat-icon class="text-3xl text-green-600">view_list</mat-icon>
         </div>
-        <!-- Table  List View -->
-        @if(view() === 'list') {
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">List View</h3>
+        <p class="text-gray-600">
+          Switch to a compact list view for quick scanning and efficient contact management.
+        </p>
+      </div>
+      
+      <!-- Feature 3 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+          <mat-icon class="text-3xl text-purple-600">add_circle</mat-icon>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">Easy Management</h3>
+        <p class="text-gray-600">
+          Add, edit, and delete contacts with intuitive forms and smooth animations.
+        </p>
+      </div>
+      
+      <!-- Feature 4 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+          <mat-icon class="text-3xl text-orange-600">search</mat-icon>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">Quick Search</h3>
+        <p class="text-gray-600">
+          Find contacts instantly with powerful search functionality across all fields.
+        </p>
+      </div>
+      
+      <!-- Feature 5 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+          <mat-icon class="text-3xl text-red-600">security</mat-icon>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">Secure & Reliable</h3>
+        <p class="text-gray-600">
+          Built with modern security practices and reliable data storage for your peace of mind.
+        </p>
+      </div>
+      
+      <!-- Feature 6 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+          <mat-icon class="text-3xl text-indigo-600">devices</mat-icon>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">Responsive Design</h3>
+        <p class="text-gray-600">
+          Works perfectly on desktop, tablet, and mobile devices with a responsive design.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Management Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Ready to Get Started?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Start managing your contacts today with our intuitive interface
+      </p>
+    </div>
+    
+    <!-- View Toggle -->
+    <div class="flex justify-center mb-8">
+      <div class="bg-gray-100 rounded-lg p-1 flex">
+        <button
+          (click)="view.set('card')"
+          class="px-6 py-3 rounded-md transition-all duration-200 flex items-center"
+          [ngClass]="{
+            'bg-white text-blue-600 shadow-md': view() === 'card',
+            'text-gray-600 hover:text-gray-900': view() !== 'card'
+          }"
+        >
+          <img 
+            src="assets/svg/grid.svg" 
+            alt="card view" 
+            class="w-5 h-5 mr-2"
+            [ngClass]="{
+              'grayscale-0': view() === 'card',
+              'grayscale': view() !== 'card'
+            }"
+          >
+          Card View
+        </button>
+        <button
+          (click)="view.set('list')"
+          class="px-6 py-3 rounded-md transition-all duration-200 flex items-center"
+          [ngClass]="{
+            'bg-white text-blue-600 shadow-md': view() === 'list',
+            'text-gray-600 hover:text-gray-900': view() !== 'list'
+          }"
+        >
+          <img 
+            src="assets/svg/menu.svg" 
+            alt="list view" 
+            class="w-5 h-5 mr-2"
+            [ngClass]="{
+              'grayscale-0': view() === 'list',
+              'grayscale': view() !== 'list'
+            }"
+          >
+          List View
+        </button>
+      </div>
+    </div>
+    
+    <!-- Contact Display -->
+    <div class="bg-gray-50 rounded-xl p-8 shadow-lg">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <h3 class="text-2xl font-bold text-gray-900">Your Contacts</h3>
+          <p class="text-gray-600">Manage and organize your contact information</p>
+        </div>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          class="bg-blue-600 hover:bg-blue-700"
+          (click)="openDialog()"
+        >
+          <mat-icon class="mr-2">add</mat-icon>
+          Add Contact
+        </button>
+      </div>
+      
+      <!-- Contact Views -->
+      @if(view() === 'list') {
         <app-table-list-view />
-        }
-        @if(view() === 'card') {
+      }
+      @if(view() === 'card') {
         <app-table-card-view />
-        }
+      }
+    </div>
+  </div>
+</section>
 
-    </section>
-</div>
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+  <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+      Start Managing Your Contacts Today
+    </h2>
+    <p class="text-xl mb-8 text-blue-100">
+      Join thousands of users who trust our contact management system
+    </p>
+    <button 
+      mat-raised-button 
+      class="text-lg px-8 py-3 bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+      (click)="openDialog()"
+    >
+      <mat-icon class="mr-2">add</mat-icon>
+      Get Started Now
+    </button>
+  </div>
+</section>

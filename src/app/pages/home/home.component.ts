@@ -17,7 +17,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
   selector: 'app-home',
   imports: [
     CommonModule,
-    MatButtonModule, MatDividerModule, MatIconModule,
+    MatButtonModule, 
+    MatDividerModule, 
+    MatIconModule,
     TableListViewComponent,
     TableCardViewComponent,
   ],
@@ -30,9 +32,17 @@ export class HomeComponent {
   readonly dialog = inject(MatDialog);
   contactService = inject(ContactService);
 
-
-
   openDialog(): void {
     this.dialog.open(AddContactComponent)
+  }
+
+  scrollToFeatures(): void {
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   }
 }
